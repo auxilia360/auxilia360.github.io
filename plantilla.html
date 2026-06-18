@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Título del artículo – Auxilia360</title>
-  <meta name="description" content="Descripción del artículo." />
+  <title>Auxilia360 – Cuidado, dependencia y bienestar familiar</title>
+  <meta name="description" content="Auxilia360: guías prácticas, recursos y consejos sobre cuidado de personas dependientes, discapacidad, ayudas sociales y bienestar familiar." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
@@ -40,32 +40,14 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
-    /* ─── TOP BAR ─── */
-    .topbar {
-      background: var(--clr-primary-dark);
-      color: rgba(255,255,255,.75);
-      font-size: 0.78rem;
-      padding: 6px 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .topbar a { color: rgba(255,255,255,.9); }
-    .topbar a:hover { color: white; }
-    .topbar-links { display: flex; gap: 1.2rem; }
-
     /* ─── HEADER / NAV ─── */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+  position: sticky;
+  top: 32px;
+  z-index: 100;
       background: var(--clr-white);
       border-bottom: 1px solid var(--clr-border);
       box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
-
-    header .topbar {
-      position: relative;
     }
 
     .nav-inner {
@@ -205,7 +187,83 @@
     }
     .hamburger svg { width: 26px; height: 26px; }
 
-    /* ─── CATEGORIES STRIP ─── */
+    /* ─── TOP BAR ─── */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 101;
+  background: var(--clr-primary-dark);
+  color: rgba(255,255,255,.75);
+  font-size: 0.78rem;
+  padding: 6px 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+    
+    .topbar a { color: rgba(255,255,255,.9); }
+    .topbar a:hover { color: white; }
+    .topbar-links { display: flex; gap: 1.2rem; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--clr-primary-dark) 0%, var(--clr-primary) 60%, #2874a6 100%);
+      color: white;
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 99px;
+      padding: 4px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 680px;
+      margin: 0 auto 1rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      opacity: .85;
+      max-width: 540px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.8rem;
+      border-radius: 99px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+    .btn-white { background: white; color: var(--clr-primary-dark); }
+    .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,.7); }
+
+    /* ─── BREAKING / CATEGORIES BAR ─── */
     .cat-strip {
       background: var(--clr-white);
       border-bottom: 2px solid var(--clr-border);
@@ -235,41 +293,58 @@
       border-bottom-color: var(--clr-primary);
     }
 
-    /* ─── BREADCRUMB ─── */
-    .breadcrumb {
+    /* ─── MAIN LAYOUT ─── */
+    .main-wrap {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 1rem 1.5rem 0;
-      font-size: 0.8rem;
-      color: var(--clr-text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .breadcrumb a { color: var(--clr-primary); }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb-sep { color: var(--clr-border); }
-
-    /* ─── PAGE LAYOUT ─── */
-    .page-wrap {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
+      padding: 2.5rem 1.5rem;
       display: grid;
       grid-template-columns: 1fr 320px;
       gap: 2.5rem;
     }
 
-    /* ─── MAIN CONTENT AREA ─── */
-    .content-area {
-      min-height: 600px;
+    /* ─── FEATURED / HERO ARTICLE ─── */
+.featured-grid {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 2.5rem;
+}
+
+ .feat-main {
+  width: 100%;
+}
+
+    .feat-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .75;
+      position: absolute;
+      inset: 0;
     }
 
-    /* Article header */
-    .article-header {
-      margin-bottom: 2rem;
+    .feat-main .feat-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 60%);
     }
+
+    .feat-side {
+      background: var(--clr-white);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .feat-side:last-child { border-bottom: none; }
 
     .tag {
       display: inline-block;
@@ -286,98 +361,120 @@
     .tag-green  { background: #eaf7ed; color: #1a7a3a; }
     .tag-purple { background: #f0ecfb; color: #5b2ea6; }
 
-    .article-header .tag {
-      margin-bottom: 1rem;
-    }
+    .feat-content .tag { background: rgba(255,255,255,.2); color: white; border: 1px solid rgba(255,255,255,.4); }
 
-    .article-header h1 {
+    .article-title {
       font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-size: 1.55rem;
       font-weight: 700;
       line-height: 1.25;
-      color: var(--clr-primary-dark);
-      margin-bottom: 1rem;
+      color: white;
     }
 
-    .article-header .article-meta {
-      font-size: 0.82rem;
-      color: var(--clr-text-muted);
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      align-items: center;
-      padding-bottom: 1.2rem;
-      border-bottom: 1px solid var(--clr-border);
-    }
-
-    .article-header .article-meta span {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .article-header .article-meta svg {
-      width: 14px;
-      height: 14px;
-      fill: var(--clr-text-muted);
-    }
-
-    /* Featured image placeholder */
-    .article-img {
-      width: 100%;
-      height: 340px;
-      background: linear-gradient(135deg, var(--clr-primary-dark) 0%, #2874a6 100%);
-      border-radius: var(--radius);
-      margin-bottom: 2rem;
-    }
-
-    /* Article body */
-    .article-body {
+    .feat-side .article-title {
       font-size: 1rem;
-      line-height: 1.75;
       color: var(--clr-text);
     }
 
-    .article-body p {
-      margin-bottom: 1.4rem;
+    .article-meta {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,.7);
+      display: flex;
+      gap: 12px;
+    }
+    .feat-side .article-meta { color: var(--clr-text-muted); }
+
+    .article-excerpt {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,.85);
+      line-height: 1.5;
     }
 
-    .article-body h2 {
+    /* ─── SECTION TITLE ─── */
+    .section-title {
       font-family: var(--font-display);
       font-size: 1.4rem;
       font-weight: 700;
       color: var(--clr-primary-dark);
-      margin: 2.2rem 0 0.8rem;
-      padding-bottom: 0.4rem;
+      padding-bottom: 0.6rem;
       border-bottom: 2px solid var(--clr-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .article-body h3 {
+    /* ─── ARTICLE CARD ─── */
+    .article-card {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .article-card:last-child { border-bottom: none; }
+
+    .article-card-img {
+      width: 110px;
+      height: 75px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: #d0dde9;
+    }
+
+    .article-card-body { display: flex; flex-direction: column; gap: 4px; }
+
+    .article-card-title {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 0.97rem;
       font-weight: 700;
+      line-height: 1.3;
       color: var(--clr-text);
-      margin: 1.8rem 0 0.6rem;
+      transition: color 0.15s;
+    }
+    .article-card:hover .article-card-title { color: var(--clr-primary); }
+
+    .article-card-meta {
+      font-size: 0.75rem;
+      color: var(--clr-text-muted);
     }
 
-    .article-body ul,
-    .article-body ol {
-      padding-left: 1.5rem;
-      margin-bottom: 1.4rem;
+    /* ─── ARTICLE CARD LARGE ─── */
+    .card-large {
+      background: var(--clr-white);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .card-large:hover { box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+
+    .card-large img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #d0dde9;
     }
 
-    .article-body li {
-      margin-bottom: 0.4rem;
-    }
+    .card-large-body { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
 
-    .article-body blockquote {
-      border-left: 4px solid var(--clr-primary);
-      background: var(--clr-tag-bg);
-      padding: 1rem 1.2rem;
-      border-radius: 0 var(--radius) var(--radius) 0;
-      margin: 1.5rem 0;
-      font-style: italic;
-      color: var(--clr-primary-dark);
+    .card-large-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--clr-text);
+      transition: color 0.15s;
+    }
+    .card-large:hover .card-large-title { color: var(--clr-primary); }
+
+    .card-large-excerpt { font-size: 0.85rem; color: var(--clr-text-muted); line-height: 1.5; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
     }
 
     /* ─── SIDEBAR ─── */
@@ -410,11 +507,13 @@
     }
     .sidebar-article:last-child { border-bottom: none; }
 
-    .sidebar-article-thumb {
+    .sidebar-article img {
       width: 60px;
       height: 45px;
       border-radius: 4px;
+      object-fit: cover;
       flex-shrink: 0;
+      background: #d0dde9;
     }
 
     .sidebar-article-title {
@@ -453,29 +552,19 @@
     }
     .newsletter button:hover { background: var(--clr-accent-light); }
 
-    /* Guías rápidas */
-    .quick-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px;
+    /* Tag cloud */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; padding: 1rem 1.1rem; }
+    .tag-cloud a {
+      display: inline-block;
+      background: var(--clr-bg);
+      color: var(--clr-text-muted);
       border: 1px solid var(--clr-border);
-      border-radius: 6px;
-      font-size: .85rem;
-      color: var(--clr-text);
-      transition: background .15s;
-      margin-bottom: 8px;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      transition: background 0.15s, color 0.15s;
     }
-    .quick-link:last-child { margin-bottom: 0; }
-    .quick-link:hover { background: var(--clr-bg); }
-    .quick-link-icon { font-size: 1.3rem; }
-
-    /* img placeholders */
-    .img-placeholder { background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%); }
-    .img-p2 { background: linear-gradient(135deg, #1a5c3a 0%, #27ae60 100%); }
-    .img-p3 { background: linear-gradient(135deg, #7b2d8b 0%, #a855c8 100%); }
-    .img-p4 { background: linear-gradient(135deg, #b7410e 0%, #e67e22 100%); }
-    .img-p5 { background: linear-gradient(135deg, #1a3a52 0%, #2e86c1 100%); }
+    .tag-cloud a:hover { background: var(--clr-tag-bg); color: var(--clr-primary); border-color: var(--clr-primary); }
 
     /* ─── TOOLS STRIP ─── */
     .tools-strip {
@@ -483,6 +572,7 @@
       border-top: 1px solid var(--clr-border);
       border-bottom: 1px solid var(--clr-border);
       padding: 2.5rem 1.5rem;
+      margin-bottom: 0;
     }
     .tools-inner { max-width: var(--max-w); margin: 0 auto; }
     .tools-title {
@@ -552,9 +642,19 @@
       margin: 0 auto;
     }
 
+    /* ─── PLACEHOLDER IMAGES (SVG data URIs via background) ─── */
+    .img-placeholder { background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%); }
+    .img-p2 { background: linear-gradient(135deg, #1a5c3a 0%, #27ae60 100%); }
+    .img-p3 { background: linear-gradient(135deg, #7b2d8b 0%, #a855c8 100%); }
+    .img-p4 { background: linear-gradient(135deg, #b7410e 0%, #e67e22 100%); }
+    .img-p5 { background: linear-gradient(135deg, #1a3a52 0%, #2e86c1 100%); }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      .page-wrap { grid-template-columns: 1fr; }
+      .main-wrap { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .feat-main { grid-row: 1; min-height: 260px; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .tools-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { grid-template-columns: 1fr 1fr; }
     }
@@ -564,26 +664,28 @@
       nav.main-nav { display: none; }
       .nav-search { display: none; }
       .hamburger { display: block; margin-left: auto; }
+      .cards-grid { grid-template-columns: 1fr; }
       .tools-grid { grid-template-columns: 1fr 1fr; }
       .footer-inner { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 8px; }
       .cat-pill { padding: 0.7rem 0.9rem; }
-      .article-img { height: 200px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- STICKY HEADER (topbar incluido) -->
-  <header>
-
   <!-- TOP BAR -->
   <div class="topbar">
-        <div class="topbar-links">
-      <a href="#">Política de privacidad</a>
-      <a href="#">Contacto</a>
+
+    <div class="topbar-links">
+      <a href="politica.html">Política de privacidad</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=auxilia360@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20la%20web" class="btn btn-outline">
+  Contactar</a>
     </div>
   </div>
+
+  <!-- STICKY HEADER -->
+  <header>
     <div class="nav-inner">
 
       <!-- Logo -->
@@ -602,7 +704,7 @@
         <div class="nav-item">
           <a href="#">Asuntos económicos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
           <div class="dropdown">
-            <a href="#">Declaración de la renta e impuestos</a>
+           <a href="plantilla.html">Declaración de la renta e impuestos</a>
             <a href="#">Gestión de inmuebles</a>
             <a href="#">Relaciones bancarias</a>
             <a href="#">Servicio de albacea</a>
@@ -614,20 +716,19 @@
           <div class="dropdown">
             <a href="#">Consultas legales</a>
             <a href="#">Prestaciones Seguridad Social</a>
+            <a href="#">Reclamaciones</a>
             <a href="#">Herencias y donaciones</a>
           </div>
         </div>
 
         <div class="nav-item">
-          <a href="#">Centros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
-          </div>
-        </div>
-
+            <a href="#">Comparador de centros</a>
+         </div>        
+ 
         <div class="nav-item">
-          <a href="#">Ayuda presencial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
-           </div>
-        </div>
-
+          <a href="#">Ayuda presencial </a>
+          </div>
+           
         <div class="nav-item">
           <a href="#">Blog</a>
         </div>
@@ -647,117 +748,10 @@
     </div>
   </header>
 
-  <!-- CATEGORIES STRIP -->
-  <div class="cat-strip" role="navigation" aria-label="Categorías">
-    <div class="cat-strip-inner">
-      <a href="#" class="cat-pill">Todos</a>
-      <a href="#" class="cat-pill">Personas mayores</a>
-      <a href="#" class="cat-pill">Dependencia</a>
-      <a href="#" class="cat-pill">Discapacidad</a>
-      <a href="#" class="cat-pill">Ayudas sociales</a>
-      <a href="#" class="cat-pill">Cuidadores</a>
-      <a href="#" class="cat-pill">Salud en casa</a>
-      <a href="#" class="cat-pill">Bienestar</a>
-      <a href="#" class="cat-pill">Legislación</a>
-      <a href="#" class="cat-pill">Recursos</a>
-    </div>
-  </div>
 
-  <!-- BREADCRUMB -->
-  <nav class="breadcrumb" aria-label="Ruta de navegación">
-    <a href="/">Inicio</a>
-    <span class="breadcrumb-sep">›</span>
-    <a href="#">Categoría</a>
-    <span class="breadcrumb-sep">›</span>
-    <span>Título del artículo</span>
-  </nav>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <div class="page-wrap">
 
-      <!-- CONTENT COLUMN -->
-      <div class="content-area">
-
-        <!-- Article header -->
-        <header class="article-header">
-          <span class="tag">Categoría</span>
-          <h1>Título del artículo</h1>
-          <div class="article-meta">
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              Autor del artículo
-            </span>
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
-              1 de junio de 2026
-            </span>
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-              5 min de lectura
-            </span>
-          </div>
-        </header>
-
-        <!-- Featured image -->
-        <div class="article-img img-placeholder"></div>
-
-        <!-- Article body — CONTENIDO AQUÍ -->
-        <div class="article-body">
-
-          <!-- Aquí va el contenido del artículo -->
-
-        </div>
-
-      </div><!-- /content-area -->
-
-      <!-- SIDEBAR -->
-      <aside class="sidebar">
-
-        <!-- Aquí puedes añadir widgets -->
-
-      </aside>
-
-    </div><!-- /page-wrap -->
-
-    <!-- TOOLS STRIP -->
-    <section class="tools-strip">
-      <div class="tools-inner">
-        <h2 class="tools-title">Herramientas y calculadoras</h2>
-        <div class="tools-grid">
-          <div class="tool-card">
-            <div class="tool-icon">
-              <svg viewBox="0 0 24 24"><path d="M9 11H3l9-9v6h6l-9 9v-6z"/></svg>
-            </div>
-            <h4>Calculadora de grado</h4>
-            <p>Estima el grado de dependencia según el baremo BVD</p>
-          </div>
-          <div class="tool-card">
-            <div class="tool-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <h4>¿Tengo derecho a ayuda?</h4>
-            <p>Descubre qué prestaciones puedes solicitar</p>
-          </div>
-          <div class="tool-card">
-            <div class="tool-icon">
-              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-            </div>
-            <h4>Buscador de recursos</h4>
-            <p>Servicios sociales y centros cerca de ti</p>
-          </div>
-          <div class="tool-card">
-            <div class="tool-icon">
-              <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-            </div>
-            <h4>Checklist para cuidadores</h4>
-            <p>Lista de comprobación diaria y semanal</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
+ 
 
   <!-- FOOTER -->
   <footer>
@@ -785,8 +779,8 @@
       <div class="footer-col">
         <h5>Auxilia360</h5>
         <a href="#">Sobre nosotros</a>
-        <a href="#">Contacto</a>
-        <a href="#">Política de privacidad</a>
+        <a href="https://mail.google.com/mail/?view=cm&to=auxilia360@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20la%20web" class="btn btn-outline">Contacto</a>
+        <a href="politica.html">Política de privacidad</a>
         <a href="#">Aviso legal</a>
         <a href="#">Cookies</a>
       </div>
