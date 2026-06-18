@@ -304,24 +304,16 @@
     }
 
     /* ─── FEATURED / HERO ARTICLE ─── */
-    .featured-grid {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 1px;
-      background: var(--clr-border);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: 2.5rem;
-    }
+.featured-grid {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
 
-    .feat-main {
-      grid-row: 1 / 3;
-      position: relative;
-      min-height: 380px;
-      background: #1a3a4a;
-    }
+ .feat-main {
+  width: 100%;
+}
 
     .feat-main img {
       width: 100%;
@@ -686,7 +678,8 @@
 
     <div class="topbar-links">
       <a href="politica.html">Política de privacidad</a>
-      <a href="mailto:auxilia360@gmail.com">Contacto</a>
+      <a href="mailto:auxilia360@gmail.com" class="btn btn-outline">
+  Contactar</a>
     </div>
   </div>
 
