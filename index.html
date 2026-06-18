@@ -188,15 +188,20 @@
     .hamburger svg { width: 26px; height: 26px; }
 
     /* ─── TOP BAR ─── */
-    .topbar {
-      background: var(--clr-primary-dark);
-      color: rgba(255,255,255,.75);
-      font-size: 0.78rem;
-      padding: 6px 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 101;
+  background: var(--clr-primary-dark);
+  color: rgba(255,255,255,.75);
+  font-size: 0.78rem;
+  padding: 6px 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+    
     .topbar a { color: rgba(255,255,255,.9); }
     .topbar a:hover { color: white; }
     .topbar-links { display: flex; gap: 1.2rem; }
@@ -678,7 +683,7 @@
 
   <!-- TOP BAR -->
   <div class="topbar">
-    <span>6 de junio de 2026</span>
+
     <div class="topbar-links">
       <a href="politica.html">Política de privacidad</a>
       <a href="mailto:auxilia360@gmail.com">Contacto</a>
@@ -825,8 +830,9 @@
 
         <!-- RECENT ARTICLES LIST -->
         
-
-          <article class="article-card">
+<h2 class="section-title">
+  Últimos artículos
+</h2>
             <div class="article-card-img img-p3"></div>
             <div class="article-card-body">
               <span class="tag tag-purple">Discapacidad</span>
