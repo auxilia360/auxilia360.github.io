@@ -43,7 +43,7 @@
     /* ─── HEADER / NAV ─── */
     header {
       position: sticky;
-      top: 0;
+      top: 32px;
       z-index: 100;
       background: var(--clr-white);
       border-bottom: 1px solid var(--clr-border);
@@ -198,7 +198,7 @@
   font-size: 0.78rem;
   padding: 6px 1.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
     
@@ -833,13 +833,7 @@
 <h2 class="section-title">
   Últimos artículos
 </h2>
-            <div class="article-card-img img-p3"></div>
-            <div class="article-card-body">
-              <span class="tag tag-purple">Discapacidad</span>
-              <h3 class="article-card-title"><a href="#">Certificado de discapacidad: cómo solicitarlo, requisitos y qué ventajas te da</a></h3>
-              <div class="article-card-meta">5 de junio de 2026 · 5 min de lectura</div>
-            </div>
-          </article>
+           
 
           <article class="article-card">
             <div class="article-card-img img-placeholder"></div>
@@ -878,8 +872,9 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--clr-primary)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           Artículos destacados
         </h2>
-        <div class="cards-grid">
 
+      
+        <div class="cards-grid">
           <article class="card-large">
             <div class="img-placeholder" style="height:190px;"></div>
             <div class="card-large-body">
