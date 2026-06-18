@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Título del artículo – Auxilia360</title>
+  <meta name="description" content="Descripción del artículo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clr-primary: #1a5276;
+      --clr-primary-dark: #154360;
+      --clr-accent: #e67e22;
+      --clr-accent-light: #f0a04b;
+      --clr-bg: #f9f8f5;
+      --clr-white: #ffffff;
+      --clr-text: #2c2c2c;
+      --clr-text-muted: #666;
+      --clr-border: #e0ddd7;
+      --clr-tag-bg: #eaf2fa;
+      --clr-tag-text: #1a5276;
+      --nav-h: 70px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Sans 3', system-ui, sans-serif;
+      --max-w: 1200px;
+      --radius: 8px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      background: var(--clr-primary-dark);
+      color: rgba(255,255,255,.75);
+      font-size: 0.78rem;
+      padding: 6px 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar a { color: rgba(255,255,255,.9); }
+    .topbar a:hover { color: white; }
+    .topbar-links { display: flex; gap: 1.2rem; }
+
+    /* ─── HEADER / NAV ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--clr-white);
+      border-bottom: 1px solid var(--clr-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    header .topbar {
+      position: relative;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--clr-primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg { fill: white; width: 22px; height: 22px; }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: var(--clr-accent); }
+
+    nav.main-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 1rem;
+      height: var(--nav-h);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--clr-text);
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-item > a:hover,
+    .nav-item > a.active { color: var(--clr-primary); }
+
+    .nav-item > a svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(var(--nav-h) - 2px);
+      left: 0;
+      min-width: 240px;
+      background: var(--clr-white);
+      border: 1px solid var(--clr-border);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.18s, transform 0.18s;
+      z-index: 200;
+    }
+
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      border-bottom: 1px solid var(--clr-border);
+      transition: background 0.15s, color 0.15s;
+    }
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover {
+      background: var(--clr-tag-bg);
+      color: var(--clr-primary);
+    }
+
+    .nav-search {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--clr-text-muted);
+      cursor: text;
+      transition: border-color 0.2s;
+    }
+    .nav-search:hover { border-color: var(--clr-primary); }
+    .nav-search svg { width: 16px; height: 16px; stroke: var(--clr-text-muted); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--clr-text);
+    }
+    .hamburger svg { width: 26px; height: 26px; }
+
+    /* ─── CATEGORIES STRIP ─── */
+    .cat-strip {
+      background: var(--clr-white);
+      border-bottom: 2px solid var(--clr-border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .cat-strip::-webkit-scrollbar { display: none; }
+    .cat-strip-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0;
+    }
+    .cat-pill {
+      display: block;
+      padding: 0.85rem 1.2rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-text-muted);
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      color: var(--clr-primary);
+      border-bottom-color: var(--clr-primary);
+    }
+
+    /* ─── BREADCRUMB ─── */
+    .breadcrumb {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 1rem 1.5rem 0;
+      font-size: 0.8rem;
+      color: var(--clr-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--clr-primary); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: var(--clr-border); }
+
+    /* ─── PAGE LAYOUT ─── */
+    .page-wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 2.5rem;
+    }
+
+    /* ─── MAIN CONTENT AREA ─── */
+    .content-area {
+      min-height: 600px;
+    }
+
+    /* Article header */
+    .article-header {
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--clr-tag-bg);
+      color: var(--clr-tag-text);
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .tag-orange { background: #fef0e1; color: #c0640a; }
+    .tag-green  { background: #eaf7ed; color: #1a7a3a; }
+    .tag-purple { background: #f0ecfb; color: #5b2ea6; }
+
+    .article-header .tag {
+      margin-bottom: 1rem;
+    }
+
+    .article-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--clr-primary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .article-header .article-meta {
+      font-size: 0.82rem;
+      color: var(--clr-text-muted);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--clr-border);
+    }
+
+    .article-header .article-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .article-header .article-meta svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--clr-text-muted);
+    }
+
+    /* Featured image placeholder */
+    .article-img {
+      width: 100%;
+      height: 340px;
+      background: linear-gradient(135deg, var(--clr-primary-dark) 0%, #2874a6 100%);
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+    }
+
+    /* Article body */
+    .article-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--clr-text);
+    }
+
+    .article-body p {
+      margin-bottom: 1.4rem;
+    }
+
+    .article-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--clr-primary-dark);
+      margin: 2.2rem 0 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--clr-primary);
+    }
+
+    .article-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--clr-text);
+      margin: 1.8rem 0 0.6rem;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .article-body li {
+      margin-bottom: 0.4rem;
+    }
+
+    .article-body blockquote {
+      border-left: 4px solid var(--clr-primary);
+      background: var(--clr-tag-bg);
+      padding: 1rem 1.2rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--clr-primary-dark);
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar { display: flex; flex-direction: column; gap: 2rem; }
+
+    .sidebar-widget {
+      background: var(--clr-white);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .widget-head {
+      background: var(--clr-primary);
+      color: white;
+      padding: 0.75rem 1.1rem;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .widget-body { padding: 1rem 1.1rem; }
+
+    .sidebar-article {
+      display: flex;
+      gap: 10px;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .sidebar-article:last-child { border-bottom: none; }
+
+    .sidebar-article-thumb {
+      width: 60px;
+      height: 45px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-article-title {
+      font-size: 0.83rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--clr-text);
+      transition: color 0.15s;
+    }
+    .sidebar-article:hover .sidebar-article-title { color: var(--clr-primary); }
+    .sidebar-article-date { font-size: 0.72rem; color: var(--clr-text-muted); margin-top: 3px; }
+
+    /* Newsletter */
+    .newsletter { background: var(--clr-primary-dark); border-radius: var(--radius); padding: 1.5rem; color: white; }
+    .newsletter h3 { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.5rem; }
+    .newsletter p { font-size: 0.83rem; opacity: .8; margin-bottom: 1rem; }
+    .newsletter input {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.88rem;
+      margin-bottom: 0.6rem;
+    }
+    .newsletter button {
+      width: 100%;
+      padding: 0.65rem;
+      background: var(--clr-accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .newsletter button:hover { background: var(--clr-accent-light); }
+
+    /* Guías rápidas */
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border: 1px solid var(--clr-border);
+      border-radius: 6px;
+      font-size: .85rem;
+      color: var(--clr-text);
+      transition: background .15s;
+      margin-bottom: 8px;
+    }
+    .quick-link:last-child { margin-bottom: 0; }
+    .quick-link:hover { background: var(--clr-bg); }
+    .quick-link-icon { font-size: 1.3rem; }
+
+    /* img placeholders */
+    .img-placeholder { background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%); }
+    .img-p2 { background: linear-gradient(135deg, #1a5c3a 0%, #27ae60 100%); }
+    .img-p3 { background: linear-gradient(135deg, #7b2d8b 0%, #a855c8 100%); }
+    .img-p4 { background: linear-gradient(135deg, #b7410e 0%, #e67e22 100%); }
+    .img-p5 { background: linear-gradient(135deg, #1a3a52 0%, #2e86c1 100%); }
+
+    /* ─── TOOLS STRIP ─── */
+    .tools-strip {
+      background: var(--clr-white);
+      border-top: 1px solid var(--clr-border);
+      border-bottom: 1px solid var(--clr-border);
+      padding: 2.5rem 1.5rem;
+    }
+    .tools-inner { max-width: var(--max-w); margin: 0 auto; }
+    .tools-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--clr-primary-dark);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .tool-card {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .tool-card:hover { border-color: var(--clr-primary); transform: translateY(-3px); }
+    .tool-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--clr-tag-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.8rem;
+    }
+    .tool-icon svg { width: 26px; height: 26px; fill: var(--clr-primary); }
+    .tool-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--clr-text); margin-bottom: 4px; }
+    .tool-card p { font-size: 0.78rem; color: var(--clr-text-muted); line-height: 1.4; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--clr-primary-dark);
+      color: rgba(255,255,255,.75);
+      padding: 3rem 1.5rem 1.5rem;
+      margin-top: 3rem;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand .logo-text { color: white; margin-bottom: 0.8rem; display: block; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+    .footer-brand p { font-size: 0.83rem; line-height: 1.6; }
+    .footer-col h5 { color: white; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,.6); margin-bottom: 0.5rem; transition: color 0.15s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,.4);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar { display: none; }
+      nav.main-nav { display: none; }
+      .nav-search { display: none; }
+      .hamburger { display: block; margin-left: auto; }
+      .tools-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+      .cat-pill { padding: 0.7rem 0.9rem; }
+      .article-img { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER (topbar incluido) -->
+  <header>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+        <div class="topbar-links">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Contacto</a>
+    </div>
+  </div>
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/>
+          </svg>
+        </div>
+        <span class="logo-text">Auxilia<span>360</span></span>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="main-nav" role="navigation" aria-label="Menú principal">
+
+        <div class="nav-item">
+          <a href="#">Asuntos económicos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown">
+            <a href="#">Declaración de la renta</a>
+            <a href="#">Gestión de inmuebles</a>
+            <a href="#">Impuestos y tasas</a>
+            <a href="#">Relaciones bancarias</a>
+            <a href="#">Servicio de albacea</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Legal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown">
+            <a href="#">Consultas legales</a>
+            <a href="#">Prestaciones Seguridad Social</a>
+            <a href="#">Reclamaciones</a>
+            <a href="#">Herencias y donaciones</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Centros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown">
+            <a href="#">Comparador de centros</a>
+            <a href="#">Residencias de mayores</a>
+            <a href="#">Hogares compartidos</a>
+            <a href="#">Auditoría de calidad</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Ayuda presencial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown">
+            <a href="#">Cuidadores a tiempo completo</a>
+            <a href="#">Cuidadores a tiempo parcial</a>
+            <a href="#">Soporte psicológico</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Blog</a>
+        </div>
+
+      </nav>
+
+      <!-- Search -->
+      <div class="nav-search" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Buscar...
+      </div>
+
+      <button class="hamburger" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- CATEGORIES STRIP -->
+  <div class="cat-strip" role="navigation" aria-label="Categorías">
+    <div class="cat-strip-inner">
+      <a href="#" class="cat-pill">Todos</a>
+      <a href="#" class="cat-pill">Personas mayores</a>
+      <a href="#" class="cat-pill">Dependencia</a>
+      <a href="#" class="cat-pill">Discapacidad</a>
+      <a href="#" class="cat-pill">Ayudas sociales</a>
+      <a href="#" class="cat-pill">Cuidadores</a>
+      <a href="#" class="cat-pill">Salud en casa</a>
+      <a href="#" class="cat-pill">Bienestar</a>
+      <a href="#" class="cat-pill">Legislación</a>
+      <a href="#" class="cat-pill">Recursos</a>
+    </div>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Ruta de navegación">
+    <a href="/">Inicio</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="#">Categoría</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Título del artículo</span>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="page-wrap">
+
+      <!-- CONTENT COLUMN -->
+      <div class="content-area">
+
+        <!-- Article header -->
+        <header class="article-header">
+          <span class="tag">Categoría</span>
+          <h1>Título del artículo</h1>
+          <div class="article-meta">
+            <span>
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Autor del artículo
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+              1 de junio de 2026
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+              5 min de lectura
+            </span>
+          </div>
+        </header>
+
+        <!-- Featured image -->
+        <div class="article-img img-placeholder"></div>
+
+        <!-- Article body — CONTENIDO AQUÍ -->
+        <div class="article-body">
+
+          <!-- Aquí va el contenido del artículo -->
+
+        </div>
+
+      </div><!-- /content-area -->
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+
+        <!-- Aquí puedes añadir widgets -->
+
+      </aside>
+
+    </div><!-- /page-wrap -->
+
+    <!-- TOOLS STRIP -->
+    <section class="tools-strip">
+      <div class="tools-inner">
+        <h2 class="tools-title">Herramientas y calculadoras</h2>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 11H3l9-9v6h6l-9 9v-6z"/></svg>
+            </div>
+            <h4>Calculadora de grado</h4>
+            <p>Estima el grado de dependencia según el baremo BVD</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <h4>¿Tengo derecho a ayuda?</h4>
+            <p>Descubre qué prestaciones puedes solicitar</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+            </div>
+            <h4>Buscador de recursos</h4>
+            <p>Servicios sociales y centros cerca de ti</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </div>
+            <h4>Checklist para cuidadores</h4>
+            <p>Lista de comprobación diaria y semanal</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">Auxilia<span style="color:var(--clr-accent)">360</span></span>
+        <p>Tu referencia en cuidado de personas dependientes, discapacidad y recursos sociales en España. Información clara, práctica y actualizada para familias y profesionales del sector.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Cuidados</h5>
+        <a href="#">Personas mayores</a>
+        <a href="#">Enfermedades crónicas</a>
+        <a href="#">Cuidado paliativo</a>
+        <a href="#">Salud en el hogar</a>
+        <a href="#">Nutrición</a>
+      </div>
+      <div class="footer-col">
+        <h5>Dependencia</h5>
+        <a href="#">Grados SAAD</a>
+        <a href="#">Prestaciones</a>
+        <a href="#">Cuidadores</a>
+        <a href="#">Residencias</a>
+        <a href="#">Centros de día</a>
+      </div>
+      <div class="footer-col">
+        <h5>Auxilia360</h5>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Contacto</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Aviso legal</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Auxilia360. Todos los derechos reservados.</span>
+      <span>Información orientativa. Consulta siempre con profesionales.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
