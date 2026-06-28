@@ -1,231 +1,60 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Auxilia360 – Cuidado, dependencia y bienestar familiar</title>
-
-  <meta name="description" content="Auxilia360: guías prácticas, recursos y consejos sobre cuidado de personas dependientes, discapacidad, ayudas sociales y bienestar familiar." />
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --clr-primary: #1a5276;
-      --clr-primary-dark: #154360;
-      --clr-accent: #e67e22;
-      --clr-bg: #f9f8f5;
-      --clr-white: #ffffff;
-      --clr-text: #2c2c2c;
-      --clr-text-muted: #666;
-      --clr-border: #e0ddd7;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-body: 'Source Sans 3', system-ui, sans-serif;
-      --max-w: 1200px;
-      --nav-h: 70px;
-    }
-
-    body {
-      font-family: var(--font-body);
-      background: var(--clr-bg);
-      color: var(--clr-text);
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* HEADER */
-    header {
-      position: sticky;
-      top: 32px;
-      z-index: 100;
-      background: var(--clr-white);
-      border-bottom: 1px solid var(--clr-border);
-    }
-
-    .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      padding: 0 1.5rem;
-      gap: 2rem;
-    }
-
-    .logo-text {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--clr-primary);
-    }
-    .logo-text span { color: var(--clr-accent); }
-
-    /* LAYOUT PRINCIPAL */
-    .main-wrap {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 2.5rem;
-    }
-
-    /* FEATURED */
-    .feat-main {
-      background: var(--clr-primary-dark);
-      color: white;
-      padding: 2rem;
-      border-radius: 8px;
-    }
-
-    /* ARTÍCULOS */
-    .article-card {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--clr-border);
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      margin: 2rem 0 1rem;
-      border-bottom: 2px solid var(--clr-primary);
-      padding-bottom: .5rem;
-    }
-
-    /* SIDEBAR */
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .sidebar-widget {
-      background: var(--clr-white);
-      border: 1px solid var(--clr-border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .widget-head {
-      background: var(--clr-primary);
-      color: white;
-      padding: .75rem 1rem;
-      font-weight: bold;
-      font-size: .85rem;
-    }
-
-    .widget-body {
-      padding: 1rem;
-    }
-
-    .sidebar-article {
-      display: flex;
-      gap: 10px;
-      padding: .6rem 0;
-      border-bottom: 1px solid var(--clr-border);
-    }
-
-    /* TOOLS */
-    .tools-strip {
-      background: var(--clr-white);
-      border-top: 1px solid var(--clr-border);
-      padding: 2.5rem 1.5rem;
-    }
-
-    .tools-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-    }
-
-    .tools-title {
-      text-align: center;
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-
-    .tool-card {
-      border: 1px solid var(--clr-border);
-      border-radius: 8px;
-      padding: 1.2rem;
-      text-align: center;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .main-wrap { grid-template-columns: 1fr; }
-      .tools-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 640px) {
-      .tools-grid { grid-template-columns: 1fr; }
-    }
-
-  </style>
-</head>
-
-<body>
-
-<header>
-  <div class="nav-inner">
-    <div class="logo-text">Auxilia<span>360</span></div>
-  </div>
-</header>
-
+<!-- MAIN CONTENT -->
 <main>
   <div class="main-wrap">
 
-    <!-- LEFT -->
+    <!-- LEFT COLUMN -->
     <div class="content-col">
 
-      <div class="feat-main">
-        <h2>Bienvenido a Auxilia360</h2>
-        <p>Plataforma de ayuda, cuidados y recursos familiares.</p>
+      <!-- FEATURED ARTICLES -->
+      <div class="featured-grid">
+
+        <article class="feat-main" style="background: var(--clr-primary-dark);">
+          <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><circle cx=%22300%22 cy=%2280%22 r=%22180%22 fill=%22rgba(255,255,255,0.04)%22/><circle cx=%2250%22 cy=%22320%22 r=%22120%22 fill=%22rgba(255,255,255,0.03)%22/></svg>') no-repeat center/cover;"></div>
+
+          <div class="feat-content" style="justify-content:center; padding: 2.5rem;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;">
+              <div style="width:48px;height:48px;background:var(--clr-accent);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/></svg>
+              </div>
+              <h2 class="article-title" style="font-size:1.35rem;">Bienvenido a Auxilia360</h2>
+            </div>
+
+            <p class="article-excerpt">En Auxilia360 queremos ser su entidad...</p>
+            <p class="article-excerpt">Podrá acceder a nuestros servicios...</p>
+            <p class="article-excerpt">Aquí puede usted solicitar a la carta...</p>
+          </div>
+        </article>
+
       </div>
 
       <h2 class="section-title">Últimos artículos</h2>
 
-      <div class="article-card">
-        <div></div>
-        <div>Grados de dependencia explicados</div>
-      </div>
-
-      <div class="article-card">
-        <div></div>
-        <div>Cómo prevenir úlceras por presión</div>
-      </div>
+      <article class="article-card">...</article>
+      <article class="article-card">...</article>
+      <article class="article-card">...</article>
 
     </div>
 
-    <!-- RIGHT -->
+    <!-- ❗❗ SIDEBAR FUERA DE content-col (ESTO ES LO IMPORTANTE) -->
     <aside class="sidebar">
 
       <div class="sidebar-widget">
         <div class="widget-head">Lo más leído</div>
+
         <div class="widget-body">
 
-          <div class="sidebar-article">
-            <div></div>
-            <div>Cómo pedir dependencia</div>
-          </div>
-
-          <div class="sidebar-article">
-            <div></div>
-            <div>Residencia vs centro de día</div>
-          </div>
+          <div class="sidebar-article">...</div>
+          <div class="sidebar-article">...</div>
+          <div class="sidebar-article">...</div>
+          <div class="sidebar-article">...</div>
+          <div class="sidebar-article">...</div>
 
         </div>
+      </div>
+
+      <div class="sidebar-widget">
+        <div class="widget-head">Guías rápidas</div>
+        <div class="widget-body">...</div>
       </div>
 
     </aside>
@@ -233,18 +62,16 @@
   </div>
 </main>
 
+<!-- ❗❗ ESTO YA NO ROMPE EL GRID -->
 <section class="tools-strip">
   <div class="tools-inner">
     <h2 class="tools-title">Herramientas y calculadoras</h2>
 
     <div class="tools-grid">
-      <div class="tool-card">Calculadora</div>
-      <div class="tool-card">Ayudas</div>
-      <div class="tool-card">Buscador</div>
-      <div class="tool-card">Checklist</div>
+      <div class="tool-card">...</div>
+      <div class="tool-card">...</div>
+      <div class="tool-card">...</div>
+      <div class="tool-card">...</div>
     </div>
   </div>
 </section>
-
-</body>
-</html>
