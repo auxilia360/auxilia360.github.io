@@ -1,0 +1,15 @@
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;color:white;padding:12px;z-index:999;">
+  Usamos cookies para mejorar la experiencia.
+  <button onclick="acceptCookies()">Aceptar</button>
+</div>
+
+<script>
+function acceptCookies() {
+  localStorage.setItem("cookiesAccepted", "true");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+
+if (localStorage.getItem("cookiesAccepted") === "true") {
+  document.getElementById("cookie-banner").style.display = "none";
+}
+</script>
