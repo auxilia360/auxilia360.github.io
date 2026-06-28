@@ -1,77 +1,260 @@
-<!-- MAIN CONTENT -->
-<main>
-  <div class="main-wrap">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auxilia360 – Cuidado, dependencia y bienestar familiar</title>
+  <meta name="description" content="Auxilia360: guías prácticas, recursos y consejos sobre cuidado de personas dependientes, discapacidad, ayudas sociales y bienestar familiar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --clr-primary: #1a5276;--clr-primary-dark: #154360;--clr-accent: #e67e22;
+      --clr-accent-light: #f0a04b;--clr-bg: #f9f8f5;--clr-white: #ffffff;
+      --clr-text: #2c2c2c;--clr-text-muted: #666;--clr-border: #e0ddd7;
+      --clr-tag-bg: #eaf2fa;--clr-tag-text: #1a5276;--nav-h: 70px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Sans 3', system-ui, sans-serif;
+      --max-w: 1200px;--radius: 8px;
+    }
+    body { font-family: var(--font-body); background: var(--clr-bg); color: var(--clr-text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .topbar { background: var(--clr-primary-dark); color: rgba(255,255,255,.75); font-size: 0.78rem; padding: 6px 1.5rem; display: flex; justify-content: flex-end; gap: 1.2rem; }
+    .topbar a { color: rgba(255,255,255,.9); }
+    header { background: var(--clr-white); border-bottom: 1px solid var(--clr-border); box-shadow: 0 2px 8px rgba(0,0,0,.06); position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; height: var(--nav-h); display: flex; align-items: center; gap: 2rem; }
+    .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .logo-icon { width: 38px; height: 38px; background: var(--clr-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .logo-icon svg { fill: white; width: 22px; height: 22px; }
+    .logo-text { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--clr-primary); letter-spacing: -0.5px; }
+    .logo-text span { color: var(--clr-accent); }
+    nav.main-nav { display: flex; align-items: center; gap: 0; flex: 1; }
+    .nav-item { position: relative; }
+    .nav-item > a { display: flex; align-items: center; gap: 4px; padding: 0 1rem; height: var(--nav-h); font-size: 0.92rem; font-weight: 600; color: var(--clr-text); white-space: nowrap; transition: color 0.2s; }
+    .nav-item > a:hover { color: var(--clr-primary); }
+    .nav-item > a svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.2s; }
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+    .dropdown { position: absolute; top: calc(var(--nav-h) - 2px); left: 0; min-width: 240px; background: var(--clr-white); border: 1px solid var(--clr-border); border-radius: 0 0 var(--radius) var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,.10); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s, transform 0.18s; z-index: 200; }
+    .nav-item:hover .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown a { display: block; padding: 0.65rem 1.25rem; font-size: 0.88rem; color: var(--clr-text-muted); border-bottom: 1px solid var(--clr-border); transition: background 0.15s, color 0.15s; }
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover { background: var(--clr-tag-bg); color: var(--clr-primary); }
+    .nav-search { margin-left: auto; display: flex; align-items: center; gap: 8px; background: var(--clr-bg); border: 1px solid var(--clr-border); border-radius: 99px; padding: 6px 14px; font-size: 0.85rem; color: var(--clr-text-muted); cursor: text; }
+    .nav-search svg { width: 16px; height: 16px; stroke: var(--clr-text-muted); fill: none; }
+    .hero { background: linear-gradient(135deg, var(--clr-primary-dark) 0%, var(--clr-primary) 60%, #2874a6 100%); color: white; padding: 4rem 1.5rem 3.5rem; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 99px; padding: 4px 16px; font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2; max-width: 680px; margin: 0 auto 1rem; }
+    .hero p { font-size: 1.05rem; opacity: .85; max-width: 540px; margin: 0 auto 2rem; }
+    .hero-cta { display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn { display: inline-block; padding: 0.7rem 1.8rem; border-radius: 99px; font-weight: 600; font-size: 0.9rem; transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; border: none; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+    .btn-white { background: white; color: var(--clr-primary-dark); }
+    .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,.7); }
+    .cat-strip { background: var(--clr-white); border-bottom: 2px solid var(--clr-border); overflow-x: auto; scrollbar-width: none; }
+    .cat-strip::-webkit-scrollbar { display: none; }
+    .cat-strip-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; display: flex; }
+    .cat-pill { display: block; padding: 0.85rem 1.2rem; font-size: 0.82rem; font-weight: 600; color: var(--clr-text-muted); white-space: nowrap; border-bottom: 3px solid transparent; transition: color 0.15s, border-color 0.15s; }
+    .cat-pill:hover, .cat-pill.active { color: var(--clr-primary); border-bottom-color: var(--clr-primary); }
+    .main-wrap { max-width: var(--max-w); margin: 0 auto; padding: 2.5rem 1.5rem; display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; }
+    .welcome-card { background: var(--clr-primary-dark); border-radius: var(--radius); padding: 2.5rem; color: white; margin-bottom: 2.5rem; position: relative; overflow: hidden; }
+    .welcome-card::before { content: ''; position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,.04); border-radius: 50%; top: -60px; right: -60px; }
+    .w-head { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; }
+    .w-icon { width: 48px; height: 48px; background: var(--clr-accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .w-icon svg { fill: white; width: 26px; height: 26px; }
+    .w-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; }
+    .w-p { font-size: 1rem; line-height: 1.7; opacity: .85; margin-bottom: 0.8rem; }
+    .section-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--clr-primary-dark); padding-bottom: 0.6rem; border-bottom: 2px solid var(--clr-primary); margin-bottom: 1.5rem; }
+    .tag { display: inline-block; background: var(--clr-tag-bg); color: var(--clr-tag-text); font-size: 0.73rem; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; }
+    .tag-orange { background: #fef0e1; color: #c0640a; }
+    .article-card { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--clr-border); }
+    .article-card:last-child { border-bottom: none; }
+    .article-card-img { width: 110px; height: 75px; border-radius: 6px; }
+    .img-p1 { background: linear-gradient(135deg, #1a5276, #2874a6); }
+    .img-p4 { background: linear-gradient(135deg, #b7410e, #e67e22); }
+    .img-p5 { background: linear-gradient(135deg, #1a3a52, #2e86c1); }
+    .img-p2 { background: linear-gradient(135deg, #1a5c3a, #27ae60); }
+    .img-p3 { background: linear-gradient(135deg, #7b2d8b, #a855c8); }
+    .article-card-body { display: flex; flex-direction: column; gap: 4px; }
+    .article-card-title { font-family: var(--font-display); font-size: 0.97rem; font-weight: 700; line-height: 1.3; color: var(--clr-text); transition: color 0.15s; }
+    .article-card:hover .article-card-title { color: var(--clr-primary); }
+    .article-card-meta { font-size: 0.75rem; color: var(--clr-text-muted); }
+    .sidebar { display: flex; flex-direction: column; gap: 2rem; }
+    .sidebar-widget { background: var(--clr-white); border: 1px solid var(--clr-border); border-radius: var(--radius); overflow: hidden; }
+    .widget-head { background: var(--clr-primary); color: white; padding: 0.75rem 1.1rem; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; letter-spacing: .5px; }
+    .widget-body { padding: 1rem 1.1rem; }
+    .sidebar-article { display: flex; gap: 10px; padding: 0.7rem 0; border-bottom: 1px solid var(--clr-border); }
+    .sidebar-article:last-child { border-bottom: none; }
+    .sidebar-article-img { width: 60px; height: 45px; border-radius: 4px; flex-shrink: 0; }
+    .sidebar-article-title { font-size: 0.83rem; font-weight: 600; line-height: 1.35; color: var(--clr-text); transition: color 0.15s; }
+    .sidebar-article:hover .sidebar-article-title { color: var(--clr-primary); }
+    .sidebar-article-date { font-size: 0.72rem; color: var(--clr-text-muted); margin-top: 3px; }
+    .guide-link { display: flex; align-items: center; gap: 10px; padding: 8px; border: 1px solid var(--clr-border); border-radius: 6px; font-size: .85rem; color: var(--clr-text); margin-bottom: 6px; transition: background 0.15s; }
+    .guide-link:hover { background: var(--clr-bg); }
+    .guide-link:last-child { margin-bottom: 0; }
+    .tools-strip { background: var(--clr-white); border-top: 1px solid var(--clr-border); border-bottom: 1px solid var(--clr-border); padding: 2.5rem 1.5rem; }
+    .tools-inner { max-width: var(--max-w); margin: 0 auto; }
+    .tools-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--clr-primary-dark); margin-bottom: 1.5rem; text-align: center; }
+    .tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .tool-card { text-align: center; padding: 1.5rem 1rem; border: 1px solid var(--clr-border); border-radius: var(--radius); transition: border-color 0.2s, transform 0.2s; cursor: pointer; }
+    .tool-card:hover { border-color: var(--clr-primary); transform: translateY(-3px); }
+    .tool-icon { width: 52px; height: 52px; background: var(--clr-tag-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.8rem; }
+    .tool-icon svg { width: 26px; height: 26px; fill: var(--clr-primary); }
+    .tool-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--clr-text); margin-bottom: 4px; }
+    .tool-card p { font-size: 0.78rem; color: var(--clr-text-muted); line-height: 1.4; }
+    footer { background: var(--clr-primary-dark); color: rgba(255,255,255,.75); padding: 3rem 1.5rem 1.5rem; margin-top: 3rem; }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+    .footer-brand .logo-text { color: white; margin-bottom: 0.8rem; display: block; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+    .footer-brand p { font-size: 0.83rem; line-height: 1.6; }
+    .footer-col h5 { color: white; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,.6); margin-bottom: 0.5rem; transition: color 0.15s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.2rem; display: flex; justify-content: space-between; font-size: 0.78rem; color: rgba(255,255,255,.4); max-width: var(--max-w); margin: 0 auto; }
+    @media (max-width: 900px) { .main-wrap { grid-template-columns: 1fr; } .tools-grid { grid-template-columns: repeat(2,1fr); } .footer-inner { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { nav.main-nav { display: none; } .tools-grid { grid-template-columns: 1fr 1fr; } .footer-inner { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
 
-    <!-- LEFT COLUMN -->
-    <div class="content-col">
+<div class="topbar">
+  <a href="#">Política de privacidad</a>
+  <a href="#">Contactar</a>
+</div>
 
-      <!-- FEATURED ARTICLES -->
-      <div class="featured-grid">
-
-        <article class="feat-main" style="background: var(--clr-primary-dark);">
-          <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><circle cx=%22300%22 cy=%2280%22 r=%22180%22 fill=%22rgba(255,255,255,0.04)%22/><circle cx=%2250%22 cy=%22320%22 r=%22120%22 fill=%22rgba(255,255,255,0.03)%22/></svg>') no-repeat center/cover;"></div>
-
-          <div class="feat-content" style="justify-content:center; padding: 2.5rem;">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;">
-              <div style="width:48px;height:48px;background:var(--clr-accent);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/></svg>
-              </div>
-              <h2 class="article-title" style="font-size:1.35rem;">Bienvenido a Auxilia360</h2>
-            </div>
-
-            <p class="article-excerpt">En Auxilia360 queremos ser su entidad...</p>
-            <p class="article-excerpt">Podrá acceder a nuestros servicios...</p>
-            <p class="article-excerpt">Aquí puede usted solicitar a la carta...</p>
-          </div>
-        </article>
-
-      </div>
-
-      <h2 class="section-title">Últimos artículos</h2>
-
-      <article class="article-card">...</article>
-      <article class="article-card">...</article>
-      <article class="article-card">...</article>
-
-    </div>
-
-    <!-- ❗❗ SIDEBAR FUERA DE content-col (ESTO ES LO IMPORTANTE) -->
-    <aside class="sidebar">
-
-      <div class="sidebar-widget">
-        <div class="widget-head">Lo más leído</div>
-
-        <div class="widget-body">
-
-          <div class="sidebar-article">...</div>
-          <div class="sidebar-article">...</div>
-          <div class="sidebar-article">...</div>
-          <div class="sidebar-article">...</div>
-          <div class="sidebar-article">...</div>
-
+<header>
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/></svg></div>
+      <span class="logo-text">Auxilia<span>360</span></span>
+    </a>
+    <nav class="main-nav">
+      <div class="nav-item">
+        <a href="#">Asuntos económicos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="dropdown">
+          <a href="desglose.html#declaracion-renta">Declaración de la renta e impuestos</a>
+          <a href="desglose.html#gestion-inmuebles">Gestión de inmuebles</a>
+          <a href="desglose.html#relaciones-bancarias">Relaciones bancarias</a>
+          <a href="desglose.html#servicio-albacea">Servicio de albacea</a>
         </div>
       </div>
-
-      <div class="sidebar-widget">
-        <div class="widget-head">Guías rápidas</div>
-        <div class="widget-body">...</div>
+      <div class="nav-item">
+        <a href="#">Legal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="dropdown">
+          <a href="desglose.html#consultas-legales">Consultas legales</a>
+          <a href="desglose.html#prestaciones-seguridad-social">Prestaciones Seguridad Social</a>
+          <a href="desglose.html#herencias-y-donaciones">Herencias y donaciones</a>
+        </div>
       </div>
-
-    </aside>
-
+      <div class="nav-item"><a href="desglose.html#comparador-de-centros">Comparador de centros</a></div>
+      <div class="nav-item"><a href="desglose.html#ayuda-presencial">Ayuda presencial</a></div>
+      <div class="nav-item"><a href="blog.html">Blog</a></div>
+      <div class="nav-item"><a href="app.html">Nuestra App</a></div>
+    </nav>
+    <div class="nav-search">
+      <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Buscar...
+    </div>
   </div>
-</main>
+</header>
 
-<!-- ❗❗ ESTO YA NO ROMPE EL GRID -->
+<section class="hero">
+  <div class="hero-badge">Tu referencia en cuidado</div>
+  <h1>Cuidado, dependencia y bienestar familiar</h1>
+  <p>Guías prácticas, recursos y consejos sobre cuidado de personas dependientes, discapacidad, ayudas sociales y bienestar familiar.</p>
+
+</section>
+
+
+
+<div class="main-wrap">
+  <div class="content-col">
+    <div class="welcome-card">
+      <div class="w-head">
+        <div class="w-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/></svg></div>
+        <span class="w-title">Bienvenido a Auxilia360</span>
+      </div>
+      <p class="w-p" style="font-size:1.15rem;">En Auxilia360 queremos ser su entidad de referencia donde aunar todos los servicios para acompañarle a usted o a sus mayores en los momentos de necesidad.</p>
+      <p class="w-p" style="font-size:1.05rem;opacity:.8">Podrá acceder a nuestros servicios directamente a través de los comparadores y contactos que le proporcionamos, o podrá solicitarnos delegar todo o parte de lo que desee en nosotros. Aquí puede usted solicitar a la carta lo que desee, cuándo y cómo.</p>
+    </div>
+
+    <h2 class="section-title">Últimos artículos</h2>
+
+    <article class="article-card">
+      <div class="article-card-img img-p1"></div>
+      <div class="article-card-body">
+        <span class="tag">Dependencia</span>
+        <h3 class="article-card-title">Grados de dependencia explicados: qué es el baremo y cómo te afecta la puntuación</h3>
+        <div class="article-card-meta">4 de junio de 2026 · 7 min de lectura</div>
+      </div>
+    </article>
+    <article class="article-card">
+      <div class="article-card-img img-p4"></div>
+      <div class="article-card-body">
+        <span class="tag tag-orange">Salud en casa</span>
+        <h3 class="article-card-title">Cómo prevenir las úlceras por presión en personas encamadas: guía para cuidadores</h3>
+        <div class="article-card-meta">3 de junio de 2026 · 8 min de lectura</div>
+      </div>
+    </article>
+    <article class="article-card">
+      <div class="article-card-img img-p5"></div>
+      <div class="article-card-body">
+        <span class="tag">Bienestar</span>
+        <h3 class="article-card-title">Estimulación cognitiva en el Alzheimer: actividades prácticas que puedes hacer en casa</h3>
+        <div class="article-card-meta">2 de junio de 2026 · 6 min de lectura</div>
+      </div>
+    </article>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-widget">
+      <div class="widget-head">Lo más leído</div>
+      <div class="widget-body">
+        <div class="sidebar-article"><div class="sidebar-article-img img-p1"></div><div><div class="sidebar-article-title">Cómo pedir el grado de dependencia: paso a paso</div><div class="sidebar-article-date">12.450 lecturas</div></div></div>
+        <div class="sidebar-article"><div class="sidebar-article-img img-p2"></div><div><div class="sidebar-article-title">Diferencia entre residencia y centro de día</div><div class="sidebar-article-date">9.872 lecturas</div></div></div>
+        <div class="sidebar-article"><div class="sidebar-article-img img-p4"></div><div><div class="sidebar-article-title">Ayuda a domicilio: qué cubre el SAAD y qué no</div><div class="sidebar-article-date">8.310 lecturas</div></div></div>
+        <div class="sidebar-article"><div class="sidebar-article-img img-p3"></div><div><div class="sidebar-article-title">Incapacitación judicial: cuándo y cómo solicitarla</div><div class="sidebar-article-date">7.140 lecturas</div></div></div>
+        <div class="sidebar-article"><div class="sidebar-article-img img-p5"></div><div><div class="sidebar-article-title">Testamento vital: qué es y cómo hacerlo en España</div><div class="sidebar-article-date">6.990 lecturas</div></div></div>
+      </div>
+    </div>
+    <div class="sidebar-widget">
+      <div class="widget-head">Guías rápidas</div>
+      <div class="widget-body">
+        <a href="#" class="guide-link"><span style="font-size:1.3rem">📋</span><span>Trámites de dependencia en 10 pasos</span></a>
+        <a href="#" class="guide-link"><span style="font-size:1.3rem">💶</span><span>Cuánto cobro como cuidador familiar</span></a>
+        <a href="#" class="guide-link"><span style="font-size:1.3rem">🏠</span><span>Guía de adaptación del hogar</span></a>
+      </div>
+    </div>
+  </aside>
+</div>
+
 <section class="tools-strip">
   <div class="tools-inner">
     <h2 class="tools-title">Herramientas y calculadoras</h2>
-
     <div class="tools-grid">
-      <div class="tool-card">...</div>
-      <div class="tool-card">...</div>
-      <div class="tool-card">...</div>
-      <div class="tool-card">...</div>
+      <div class="tool-card"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M9 11H3l9-9v6h6l-9 9v-6z"/></svg></div><h4>Calculadora de grado</h4><p>Estima el grado de dependencia según el baremo BVD</p></div>
+      <div class="tool-card"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><h4>¿Tengo derecho a ayuda?</h4><p>Descubre qué prestaciones puedes solicitar</p></div>
+      <div class="tool-card"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div><h4>Buscador de recursos</h4><p>Servicios sociales y centros cerca de ti</p></div>
+      <div class="tool-card"><div class="tool-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div><h4>Checklist para cuidadores</h4><p>Lista de comprobación diaria y semanal</p></div>
     </div>
   </div>
 </section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-text">Auxilia<span style="color:var(--clr-accent)">360</span></span>
+      <p>Tu referencia en cuidado de personas dependientes, discapacidad y recursos sociales en España. Información clara, práctica y actualizada para familias y profesionales del sector.</p>
+    </div>
+    <div class="footer-col"><h5>Cuidados</h5><a href="#">Personas mayores</a><a href="#">Enfermedades crónicas</a><a href="#">Cuidado paliativo</a><a href="#">Salud en el hogar</a><a href="#">Nutrición</a></div>
+    <div class="footer-col"><h5>Dependencia</h5><a href="#">Grados SAAD</a><a href="#">Prestaciones</a><a href="#">Cuidadores</a><a href="#">Residencias</a><a href="#">Centros de día</a></div>
+    <div class="footer-col"><h5>Auxilia360</h5><a href="#">Sobre nosotros</a><a href="#">Contacto</a><a href="#">Política de privacidad</a><a href="#">Aviso legal</a><a href="#">Cookies</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Auxilia360. Todos los derechos reservados.</span>
+    <span>Información orientativa. Consulte siempre con profesionales.</span>
+  </div>
+</footer>
+
+</body>
+</html>
