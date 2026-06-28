@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestra App – Auxilia360</title>
+  <meta name="description" content="Localizador Familiar de Auxilia360: mira si tu familia está bien, dónde está y cuándo usó el móvil por última vez.
+    Nuestra aplicación detecta si la pantalla ha estado encendida más de 1 minuto, si ha conectado o desconectado el wifi o el cargado." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clr-primary: #1a5276;
+      --clr-primary-dark: #154360;
+      --clr-accent: #e67e22;
+      --clr-accent-light: #f0a04b;
+      --clr-bg: #f9f8f5;
+      --clr-white: #ffffff;
+      --clr-text: #2c2c2c;
+      --clr-text-muted: #666;
+      --clr-border: #e0ddd7;
+      --clr-tag-bg: #eaf2fa;
+      --clr-tag-text: #1a5276;
+      --nav-h: 70px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Sans 3', system-ui, sans-serif;
+      --max-w: 1200px;
+      --radius: 8px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* HEADER / NAV */
+    header {
+      position: sticky;
+      top: 32px;
+      z-index: 100;
+      background: var(--clr-white);
+      border-bottom: 1px solid var(--clr-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--clr-primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg { fill: white; width: 22px; height: 22px; }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: var(--clr-accent); }
+
+    nav.main-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+    }
+
+    .nav-item { position: relative; }
+
+    .nav-item > a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 1rem;
+      height: var(--nav-h);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--clr-text);
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-item > a:hover,
+    .nav-item > a.active { color: var(--clr-primary); }
+
+    .nav-item > a svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(var(--nav-h) - 2px);
+      left: 0;
+      min-width: 240px;
+      background: var(--clr-white);
+      border: 1px solid var(--clr-border);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.18s, transform 0.18s;
+      z-index: 200;
+    }
+
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      border-bottom: 1px solid var(--clr-border);
+      transition: background 0.15s, color 0.15s;
+    }
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover {
+      background: var(--clr-tag-bg);
+      color: var(--clr-primary);
+    }
+
+    .nav-search {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--clr-text-muted);
+      cursor: text;
+      transition: border-color 0.2s;
+    }
+    .nav-search:hover { border-color: var(--clr-primary); }
+    .nav-search svg { width: 16px; height: 16px; stroke: var(--clr-text-muted); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--clr-text);
+    }
+    .hamburger svg { width: 26px; height: 26px; }
+
+    /* TOP BAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 101;
+      background: var(--clr-primary-dark);
+      color: rgba(255,255,255,.75);
+      font-size: 0.78rem;
+      padding: 6px 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .topbar a { color: rgba(255,255,255,.9); }
+    .topbar a:hover { color: white; }
+    .topbar-links { display: flex; gap: 1.2rem; }
+
+    /* HERO APP */
+    .app-hero {
+      background: linear-gradient(135deg, var(--clr-primary-dark) 0%, var(--clr-primary) 60%, #2874a6 100%);
+      color: white;
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .app-hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 99px;
+      padding: 4px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+
+    .app-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 680px;
+      margin: 0 auto 1.2rem;
+    }
+
+    .app-hero p {
+      font-size: 1.15rem;
+      opacity: .85;
+      max-width: 520px;
+      margin: 0 auto 2.2rem;
+      line-height: 1.7;
+    }
+
+    .app-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      color: var(--clr-primary-dark);
+      border-radius: 12px;
+      padding: 0.85rem 1.8rem;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: default;
+      opacity: 0.92;
+    }
+
+    .app-download-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: #3ddc84;
+      flex-shrink: 0;
+    }
+
+    .app-download-btn-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+    }
+
+    .app-download-btn-inner small {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--clr-text-muted);
+    }
+
+    .app-coming-soon {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      opacity: .65;
+    }
+
+    /* FEATURES */
+    .app-features {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .app-features h2 {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: var(--clr-primary-dark);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--clr-white);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 58px;
+      height: 58px;
+      background: var(--clr-tag-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .feature-icon svg { width: 28px; height: 28px; fill: var(--clr-primary); }
+
+    .feature-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--clr-primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      line-height: 1.6;
+    }
+
+    /* HOW IT WORKS */
+    .how-section {
+      background: var(--clr-white);
+      border-top: 1px solid var(--clr-border);
+      border-bottom: 1px solid var(--clr-border);
+      padding: 4rem 1.5rem;
+    }
+
+    .how-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .how-inner h2 {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: var(--clr-primary-dark);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .step {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      background: var(--clr-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0 auto 1rem;
+      font-family: var(--font-display);
+    }
+
+    .step h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--clr-primary-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .step p {
+      font-size: 0.87rem;
+      color: var(--clr-text-muted);
+      line-height: 1.6;
+    }
+
+    /* PRIVACY NOTE */
+    .privacy-note {
+      max-width: 700px;
+      margin: 3rem auto;
+      padding: 1.5rem 2rem;
+      background: var(--clr-tag-bg);
+      border-left: 4px solid var(--clr-primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.9rem;
+      color: var(--clr-text-muted);
+      line-height: 1.7;
+    }
+
+    .privacy-note strong {
+      color: var(--clr-primary-dark);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--clr-primary-dark);
+      color: rgba(255,255,255,.75);
+      padding: 3rem 1.5rem 1.5rem;
+      margin-top: 3rem;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand .logo-text { color: white; margin-bottom: 0.8rem; display: block; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+    .footer-brand p { font-size: 0.83rem; line-height: 1.6; }
+    .footer-col h5 { color: white; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,.6); margin-bottom: 0.5rem; transition: color 0.15s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,.4);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar { display: none; }
+      nav.main-nav { display: none; }
+      .nav-search { display: none; }
+      .hamburger { display: block; margin-left: auto; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-links">
+      <a href="politica.html">Política de privacidad</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=auxilia360@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20la%20web">Contactar</a>
+    </div>
+  </div>
+
+  <!-- STICKY HEADER -->
+  <header>
+    <div class="nav-inner">
+
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/>
+          </svg>
+        </div>
+        <span class="logo-text">Auxilia<span>360</span></span>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Menú principal">
+
+        <div class="nav-item">
+          <a href="#">Asuntos económicos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown">
+            <a href="desglose.html#declaracion-renta">Declaración de la renta e impuestos</a>
+            <a href="desglose.html#gestion-inmuebles">Gestión de inmuebles</a>
+            <a href="desglose.html#relaciones-bancarias">Relaciones bancarias</a>
+            <a href="desglose.html#servicio-albacea">Servicio de albacea</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Legal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown">
+            <a href="desglose.html#consultas-legales">Consultas legales</a>
+            <a href="desglose.html#prestaciones-seguridad-social">Prestaciones Seguridad Social</a>
+            <a href="desglose.html#herencias-y-donaciones">Herencias y donaciones</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="desglose.html#comparador-de-centros">Comparador de centros</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="desglose.html#ayuda-presencial">Ayuda presencial</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="desglose.html#blog">Blog</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="app.html" class="active">Nuestra App</a>
+        </div>
+
+      </nav>
+
+      <div class="nav-search" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Buscar...
+      </div>
+
+      <button class="hamburger" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="app-hero">
+      <div class="app-hero-badge">Aplicación gratuita</div>
+      <h1>Mira si tu familia está bien, dónde está y cuándo usó el móvil por última vez.</h1>
+      <p>Localizador Familiar es la app de Auxilia360 para estar cerca de las personas que más quieres, aunque estés lejos.</p>
+      <div>
+        <div class="app-download-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.18 23.76c.3.17.65.2.98.09l11.65-6.73-2.48-2.48-10.15 9.12zM.1 1.08C.04 1.28 0 1.5 0 1.74v20.52c0 .24.04.46.1.66l.06.06 11.5-11.5v-.27L.16 1.02.1 1.08zM20.44 8.34l-2.66-1.54-2.79 2.79 2.79 2.79 2.68-1.55c.76-.44.76-1.06-.02-1.49zM4.16.15L15.81 6.88l-2.48 2.48L3.18.24C3.51.13 3.86.16 4.16.33v-.18z"/>
+          </svg>
+          <div class="app-download-btn-inner">
+            <small>Disponible próximamente en</small>
+            Google Play
+          </div>
+        </div>
+        <div class="app-coming-soon">
+          <br>Versión iOS próximamente </br> </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="app-features">
+      <h2>¿Qué puedes saber con un solo toque?</h2>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <h3>Dónde está</h3>
+          <p>Consulta la ubicación de un familiar con su permiso, sin que tenga que hacer nada ni estar pendiente del móvil.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 1a9 9 0 1 0 0 18A9 9 0 0 0 12 1zm.5 13.5h-1v-6h1v6zm0-8h-1V5h1v1.5z"/></svg>
+          </div>
+          <h3>Si está bien</h3>
+          <p>Recibe confirmación de que tu familiar está activo y con el móvil, sin necesidad de llamar ni molestar.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <h3>Última vez activo</h3>
+          <p>Consulta cuándo usó el móvil por última vez, para saber si está desconectado o simplemente ocupado.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section">
+      <div class="how-inner">
+        <h2>¿Cómo funciona?</h2>
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Descarga la app</h3>
+            <p>Tanto tú como tu familiar instaláis la aplicación en vuestros móviles Android.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Vinculad las cuentas</h3>
+            <p>Cada miembro de la familia crea su perfil y se conecta con las personas que quiere tener cerca.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Consulta cuando quieras</h3>
+            <p>Con un toque puedes ver si está bien, dónde está y cuándo fue la última vez que usó el móvil.</p>
+          </div>
+
+        </div>
+
+        <div class="privacy-note">
+          <strong>Tu privacidad, primero.</strong> La localización solo se comparte cuando tú lo autorizas expresamente. Nadie puede verte sin tu permiso, y 
+          puedes desactivarlo en cualquier momento. Incluso puedes añadir un margen de kilómetros para que no conozcan tu localización exacta dando así
+          tranquilidad y privacidad.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">Auxilia<span style="color:var(--clr-accent)">360</span></span>
+        <p>Tu referencia en cuidado de personas dependientes, discapacidad y recursos sociales en España. Información clara, práctica y actualizada para familias y profesionales del sector.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Cuidados</h5>
+        <a href="#">Personas mayores</a>
+        <a href="#">Enfermedades crónicas</a>
+        <a href="#">Cuidado paliativo</a>
+        <a href="#">Salud en el hogar</a>
+        <a href="#">Nutrición</a>
+      </div>
+      <div class="footer-col">
+        <h5>Dependencia</h5>
+        <a href="#">Grados SAAD</a>
+        <a href="#">Prestaciones</a>
+        <a href="#">Cuidadores</a>
+        <a href="#">Residencias</a>
+        <a href="#">Centros de día</a>
+      </div>
+      <div class="footer-col">
+        <h5>Auxilia360</h5>
+        <a href="#">Sobre nosotros</a>
+        <a href="https://mail.google.com/mail/?view=cm&to=auxilia360@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20la%20web">Contacto</a>
+        <a href="politica.html">Política de privacidad</a>
+        <a href="#">Aviso legal</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Auxilia360. Todos los derechos reservados.</span>
+      <span>Información orientativa. Consulta siempre con profesionales.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
