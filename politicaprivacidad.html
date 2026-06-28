@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad – Localizador Familiar · Auxilia360</title>
+  <meta name="description" content="Política de privacidad de la aplicación Localizador Familiar de Auxilia360." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clr-primary: #1a5276;
+      --clr-primary-dark: #154360;
+      --clr-accent: #e67e22;
+      --clr-accent-light: #f0a04b;
+      --clr-bg: #f9f8f5;
+      --clr-white: #ffffff;
+      --clr-text: #2c2c2c;
+      --clr-text-muted: #666;
+      --clr-border: #e0ddd7;
+      --clr-tag-bg: #eaf2fa;
+      --nav-h: 70px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Sans 3', system-ui, sans-serif;
+      --max-w: 1200px;
+      --radius: 8px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--clr-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* TOP BAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 101;
+      background: var(--clr-primary-dark);
+      color: rgba(255,255,255,.75);
+      font-size: 0.78rem;
+      padding: 6px 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .topbar a { color: rgba(255,255,255,.9); }
+    .topbar a:hover { color: white; text-decoration: none; }
+    .topbar-links { display: flex; gap: 1.2rem; }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 32px;
+      z-index: 100;
+      background: var(--clr-white);
+      border-bottom: 1px solid var(--clr-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--clr-primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon svg { fill: white; width: 22px; height: 22px; }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: var(--clr-accent); }
+
+    nav.main-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+    }
+
+    .nav-item { position: relative; }
+
+    .nav-item > a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 1rem;
+      height: var(--nav-h);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--clr-text);
+      white-space: nowrap;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .nav-item > a:hover { color: var(--clr-primary); }
+    .nav-item > a svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.2s; }
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(var(--nav-h) - 2px);
+      left: 0;
+      min-width: 240px;
+      background: var(--clr-white);
+      border: 1px solid var(--clr-border);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.18s, transform 0.18s;
+      z-index: 200;
+    }
+    .nav-item:hover .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown a {
+      display: block;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      border-bottom: 1px solid var(--clr-border);
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+    }
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover { background: var(--clr-tag-bg); color: var(--clr-primary); }
+
+    .nav-search {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--clr-text-muted);
+      cursor: text;
+    }
+    .nav-search svg { width: 16px; height: 16px; stroke: var(--clr-text-muted); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--clr-text);
+    }
+    .hamburger svg { width: 26px; height: 26px; }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(135deg, var(--clr-primary-dark) 0%, var(--clr-primary) 100%);
+      color: white;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .page-hero .meta {
+      font-size: 0.88rem;
+      opacity: .75;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* CONTENT */
+    .policy-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .policy-section {
+      margin-bottom: 2.8rem;
+    }
+
+    .policy-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--clr-primary-dark);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--clr-primary);
+      margin-bottom: 1.1rem;
+    }
+
+    .policy-section p {
+      font-size: 1rem;
+      color: var(--clr-text);
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .policy-section ul li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.97rem;
+      line-height: 1.65;
+      color: var(--clr-text);
+    }
+
+    .policy-section ul li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      min-width: 8px;
+      background: var(--clr-accent);
+      border-radius: 50%;
+      margin-top: 0.55em;
+    }
+
+    .highlight-box {
+      background: var(--clr-tag-bg);
+      border-left: 4px solid var(--clr-primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.1rem 1.4rem;
+      font-size: 0.95rem;
+      color: var(--clr-text);
+      line-height: 1.7;
+      margin-top: 1rem;
+    }
+
+    .contact-link {
+      display: inline-block;
+      background: var(--clr-primary);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 99px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 0.8rem;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .contact-link:hover { background: var(--clr-primary-dark); text-decoration: none; }
+
+    /* FOOTER */
+    footer {
+      background: var(--clr-primary-dark);
+      color: rgba(255,255,255,.75);
+      padding: 3rem 1.5rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand .logo-text { color: white; margin-bottom: 0.8rem; display: block; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+    .footer-brand p { font-size: 0.83rem; line-height: 1.6; }
+    .footer-col h5 { color: white; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,.6); margin-bottom: 0.5rem; transition: color 0.15s; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,.4);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .topbar { display: none; }
+      nav.main-nav { display: none; }
+      .nav-search { display: none; }
+      .hamburger { display: block; margin-left: auto; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-links">
+      <a href="politicaprivacidad.html">Política de privacidad</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=auxilia360@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20la%20web">Contactar</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/></svg>
+        </div>
+        <span class="logo-text">Auxilia<span>360</span></span>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Menú principal">
+
+        <div class="nav-item">
+          <a href="#">Asuntos económicos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown">
+            <a href="desglose.html#declaracion-renta">Declaración de la renta e impuestos</a>
+            <a href="desglose.html#gestion-inmuebles">Gestión de inmuebles</a>
+            <a href="desglose.html#relaciones-bancarias">Relaciones bancarias</a>
+            <a href="desglose.html#servicio-albacea">Servicio de albacea</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Legal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown">
+            <a href="desglose.html#consultas-legales">Consultas legales</a>
+            <a href="desglose.html#prestaciones-seguridad-social">Prestaciones Seguridad Social</a>
+            <a href="desglose.html#herencias-y-donaciones">Herencias y donaciones</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="desglose.html#comparador-de-centros">Comparador de centros</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="desglose.html#ayuda-presencial">Ayuda presencial</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="desglose.html#blog">Blog</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="app.html">Nuestra App</a>
+        </div>
+
+      </nav>
+
+      <div class="nav-search" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Buscar...
+      </div>
+
+      <button class="hamburger" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <h1>Política de Privacidad</h1>
+    <div class="meta">
+      <span>Localizador Familiar · Auxilia360</span>
+      <span>Última actualización: junio 2026</span>
+      <span>Responsable: <a href="mailto:auxilia360@gmail.com" style="color:rgba(255,255,255,.9)">auxilia360@gmail.com</a></span>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="policy-wrap">
+
+    <div class="policy-section">
+      <h2>Datos que recogemos</h2>
+      <ul>
+        <li><strong>Correo electrónico</strong> — para crear y autenticar tu cuenta.</li>
+        <li><strong>Ubicación puntual</strong> — solo cuando otro usuario autorizado la solicita expresamente. No se recoge en tiempo real ni en segundo plano de forma continua; únicamente se recoge de forma momentánea en segundo plano. Puedes cancelar este permiso fácilmente y en cualquier momento.</li>
+        <li><strong>Historial de consultas</strong> — registro de qué usuarios han solicitado tu ubicación y cuándo.</li>
+        <li><strong>Datos de actividad</strong> — para saber si estás bien, la aplicación detecta si la pantalla ha estado encendida más de 1 minuto, y si se ha conectado o desconectado el wifi o el cargador. Puedes desactivar el uso compartido de estos datos en cualquier momento.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Para qué usamos tus datos</h2>
+      <ul>
+        <li>Permitir que usuarios autorizados por ti consulten tu ubicación puntual.</li>
+        <li>Mostrarte un historial de quién ha consultado tu posición.</li>
+        <li>Autenticar tu acceso a la aplicación.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Quién puede ver tu ubicación</h2>
+      <p>Solo los usuarios que tú hayas autorizado expresamente dentro de la app pueden solicitar tu ubicación. Ningún tercero, administrador ni la empresa tiene acceso a tu posición.</p>
+      <p>En cualquier momento puedes cancelar que se siga compartiendo tu ubicación con uno o más usuarios.</p>
+      <div class="highlight-box">
+        Tu ubicación nunca se comparte de forma automática ni continua. Cada consulta requiere tu autorización previa y queda registrada en tu historial.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Terceros</h2>
+      <p>La app utiliza los siguientes servicios de Google:</p>
+      <ul>
+        <li><strong>Firebase Authentication</strong> — gestión de cuentas.</li>
+        <li><strong>Firebase Firestore</strong> — almacenamiento de datos.</li>
+        <li><strong>Google Play Services</strong> — servicios de ubicación.</li>
+      </ul>
+      <p style="margin-top:1rem;">Puedes consultar la política de privacidad de Google en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Conservación de datos</h2>
+      <p>Tus datos se conservan mientras tu cuenta esté activa. El historial de consultas de ubicación se mantiene para que puedas consultarlo en cualquier momento.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Tus derechos</h2>
+      <p>Puedes solicitar en cualquier momento:</p>
+      <ul>
+        <li>Acceso a tus datos.</li>
+        <li>Rectificación de datos incorrectos.</li>
+        <li>Eliminación de tu cuenta y todos tus datos.</li>
+      </ul>
+      <p style="margin-top:1rem;">Para ejercer estos derechos, contacta en:</p>
+      <a href="mailto:auxilia360@gmail.com" class="contact-link">auxilia360@gmail.com</a>
+    </div>
+
+    <div class="policy-section">
+      <h2>Seguridad</h2>
+      <p>Los datos se almacenan en los servidores de Firebase (Google) con cifrado en tránsito y en reposo.</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">Auxilia<span style="color:var(--clr-accent)">360</span></span>
+        <p>Tu referencia en cuidado de personas dependientes, discapacidad y recursos sociales en España. Información clara, práctica y actualizada para familias y profesionales del sector.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Cuidados</h5>
+        <a href="#">Personas mayores</a>
+        <a href="#">Enfermedades crónicas</a>
+        <a href="#">Cuidado paliativo</a>
+        <a href="#">Salud en el hogar</a>
+        <a href="#">Nutrición</a>
+      </div>
+      <div class="footer-col">
+        <h5>Dependencia</h5>
+        <a href="#">Grados SAAD</a>
+        <a href="#">Prestaciones</a>
+        <a href="#">Cuidadores</a>
+        <a href="#">Residencias</a>
+        <a href="#">Centros de día</a>
+      </div>
+      <div class="footer-col">
+        <h5>Auxilia360</h5>
+        <a href="#">Sobre nosotros</a>
+        <a href="https://mail.google.com/mail/?view=cm&to=auxilia360@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20la%20web">Contacto</a>
+        <a href="politicaprivacidad.html">Política de privacidad</a>
+        <a href="#">Aviso legal</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Auxilia360. Todos los derechos reservados.</span>
+      <span>Información orientativa. Consulta siempre con profesionales.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
