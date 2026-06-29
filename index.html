@@ -57,7 +57,7 @@
     .cat-strip-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; display: flex; }
     .cat-pill { display: block; padding: 0.85rem 1.2rem; font-size: 0.82rem; font-weight: 600; color: var(--clr-text-muted); white-space: nowrap; border-bottom: 3px solid transparent; transition: color 0.15s, border-color 0.15s; }
     .cat-pill:hover, .cat-pill.active { color: var(--clr-primary); border-bottom-color: var(--clr-primary); }
-    .main-wrap { max-width: var(--max-w); margin: 0 auto; padding: 2.5rem 1.5rem; display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; }
+    .main-wrap { max-width: var(--max-w); margin: 0 auto; padding: 2.5rem 1.5rem; }
     .welcome-card { background: var(--clr-primary-dark); border-radius: var(--radius); padding: 2.5rem; color: white; margin-bottom: 2.5rem; position: relative; overflow: hidden; }
     .welcome-card::before { content: ''; position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,.04); border-radius: 50%; top: -60px; right: -60px; }
     .w-head { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; }
@@ -80,19 +80,6 @@
     .article-card-title { font-family: var(--font-display); font-size: 0.97rem; font-weight: 700; line-height: 1.3; color: var(--clr-text); transition: color 0.15s; }
     .article-card:hover .article-card-title { color: var(--clr-primary); }
     .article-card-meta { font-size: 0.75rem; color: var(--clr-text-muted); }
-    .sidebar { display: flex; flex-direction: column; gap: 2rem; }
-    .sidebar-widget { background: var(--clr-white); border: 1px solid var(--clr-border); border-radius: var(--radius); overflow: hidden; }
-    .widget-head { background: var(--clr-primary); color: white; padding: 0.75rem 1.1rem; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; letter-spacing: .5px; }
-    .widget-body { padding: 1rem 1.1rem; }
-    .sidebar-article { display: flex; gap: 10px; padding: 0.7rem 0; border-bottom: 1px solid var(--clr-border); }
-    .sidebar-article:last-child { border-bottom: none; }
-    .sidebar-article-img { width: 60px; height: 45px; border-radius: 4px; flex-shrink: 0; }
-    .sidebar-article-title { font-size: 0.83rem; font-weight: 600; line-height: 1.35; color: var(--clr-text); transition: color 0.15s; }
-    .sidebar-article:hover .sidebar-article-title { color: var(--clr-primary); }
-    .sidebar-article-date { font-size: 0.72rem; color: var(--clr-text-muted); margin-top: 3px; }
-    .guide-link { display: flex; align-items: center; gap: 10px; padding: 8px; border: 1px solid var(--clr-border); border-radius: 6px; font-size: .85rem; color: var(--clr-text); margin-bottom: 6px; transition: background 0.15s; }
-    .guide-link:hover { background: var(--clr-bg); }
-    .guide-link:last-child { margin-bottom: 0; }
     .tools-strip { background: var(--clr-white); border-top: 1px solid var(--clr-border); border-bottom: 1px solid var(--clr-border); padding: 2.5rem 1.5rem; }
     .tools-inner { max-width: var(--max-w); margin: 0 auto; }
     .tools-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--clr-primary-dark); margin-bottom: 1.5rem; text-align: center; }
@@ -111,7 +98,7 @@
     .footer-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,.6); margin-bottom: 0.5rem; transition: color 0.15s; }
     .footer-col a:hover { color: white; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.2rem; display: flex; justify-content: space-between; font-size: 0.78rem; color: rgba(255,255,255,.4); max-width: var(--max-w); margin: 0 auto; }
-    @media (max-width: 900px) { .main-wrap { grid-template-columns: 1fr; } .tools-grid { grid-template-columns: repeat(2,1fr); } .footer-inner { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 900px) { .tools-grid { grid-template-columns: repeat(2,1fr); } .footer-inner { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 640px) { nav.main-nav { display: none; } .tools-grid { grid-template-columns: 1fr 1fr; } .footer-inner { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -162,70 +149,44 @@
   <div class="hero-badge">Tu referencia en cuidado</div>
   <h1>Cuidado, dependencia y bienestar familiar</h1>
   <p>Guías prácticas, recursos y consejos sobre cuidado de personas dependientes, discapacidad, ayudas sociales y bienestar familiar.</p>
-
 </section>
 
-
-
 <div class="main-wrap">
-  <div class="content-col">
-    <div class="welcome-card">
-      <div class="w-head">
-        <div class="w-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/></svg></div>
-        <span class="w-title">Bienvenido a Auxilia360</span>
-      </div>
-      <p class="w-p" style="font-size:1.15rem;">En Auxilia360 queremos ser su entidad de referencia donde aunar todos los servicios para acompañarle a usted o a sus mayores en los momentos de necesidad.</p>
-      <p class="w-p" style="font-size:1.05rem;opacity:.8">Podrá acceder a nuestros servicios directamente a través de los comparadores y contactos que le proporcionamos, o podrá solicitarnos delegar todo o parte de lo que desee en nosotros. Aquí puede usted solicitar a la carta lo que desee, cuándo y cómo.</p>
+  <div class="welcome-card">
+    <div class="w-head">
+      <div class="w-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9.24 2 7 4.24 7 7c0 1.78.88 3.35 2.22 4.31C6.28 12.53 4 15.53 4 19v1h16v-1c0-3.47-2.28-6.47-5.22-7.69C16.12 10.35 17 8.78 17 7c0-2.76-2.24-5-5-5z"/></svg></div>
+      <span class="w-title">Bienvenido a Auxilia360</span>
     </div>
-
-    <h2 class="section-title">Últimos artículos</h2>
-
-    <article class="article-card">
-      <div class="article-card-img img-p1"></div>
-      <div class="article-card-body">
-        <span class="tag">Dependencia</span>
-        <h3 class="article-card-title">Grados de dependencia explicados: qué es el baremo y cómo te afecta la puntuación</h3>
-        <div class="article-card-meta">4 de junio de 2026 · 7 min de lectura</div>
-      </div>
-    </article>
-    <article class="article-card">
-      <div class="article-card-img img-p4"></div>
-      <div class="article-card-body">
-        <span class="tag tag-orange">Salud en casa</span>
-        <h3 class="article-card-title">Cómo prevenir las úlceras por presión en personas encamadas: guía para cuidadores</h3>
-        <div class="article-card-meta">3 de junio de 2026 · 8 min de lectura</div>
-      </div>
-    </article>
-    <article class="article-card">
-      <div class="article-card-img img-p5"></div>
-      <div class="article-card-body">
-        <span class="tag">Bienestar</span>
-        <h3 class="article-card-title">Estimulación cognitiva en el Alzheimer: actividades prácticas que puedes hacer en casa</h3>
-        <div class="article-card-meta">2 de junio de 2026 · 6 min de lectura</div>
-      </div>
-    </article>
+    <p class="w-p" style="font-size:1.15rem;">En Auxilia360 queremos ser su entidad de referencia donde aunar todos los servicios para acompañarle a usted o a sus mayores en los momentos de necesidad.</p>
+    <p class="w-p" style="font-size:1.05rem;opacity:.8">Podrá acceder a nuestros servicios directamente a través de los comparadores y contactos que le proporcionamos, o podrá solicitarnos delegar todo o parte de lo que desee en nosotros. Aquí puede usted solicitar a la carta lo que desee, cuándo y cómo.</p>
   </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-widget">
-      <div class="widget-head">Lo más leído</div>
-      <div class="widget-body">
-        <div class="sidebar-article"><div class="sidebar-article-img img-p1"></div><div><div class="sidebar-article-title">Cómo pedir el grado de dependencia: paso a paso</div><div class="sidebar-article-date">12.450 lecturas</div></div></div>
-        <div class="sidebar-article"><div class="sidebar-article-img img-p2"></div><div><div class="sidebar-article-title">Diferencia entre residencia y centro de día</div><div class="sidebar-article-date">9.872 lecturas</div></div></div>
-        <div class="sidebar-article"><div class="sidebar-article-img img-p4"></div><div><div class="sidebar-article-title">Ayuda a domicilio: qué cubre el SAAD y qué no</div><div class="sidebar-article-date">8.310 lecturas</div></div></div>
-        <div class="sidebar-article"><div class="sidebar-article-img img-p3"></div><div><div class="sidebar-article-title">Incapacitación judicial: cuándo y cómo solicitarla</div><div class="sidebar-article-date">7.140 lecturas</div></div></div>
-        <div class="sidebar-article"><div class="sidebar-article-img img-p5"></div><div><div class="sidebar-article-title">Testamento vital: qué es y cómo hacerlo en España</div><div class="sidebar-article-date">6.990 lecturas</div></div></div>
-      </div>
+  <h2 class="section-title">Últimos artículos</h2>
+
+  <article class="article-card">
+    <div class="article-card-img img-p1"></div>
+    <div class="article-card-body">
+      <span class="tag">Dependencia</span>
+      <h3 class="article-card-title">Grados de dependencia explicados: qué es el baremo y cómo te afecta la puntuación</h3>
+      <div class="article-card-meta">4 de junio de 2026 · 7 min de lectura</div>
     </div>
-    <div class="sidebar-widget">
-      <div class="widget-head">Guías rápidas</div>
-      <div class="widget-body">
-        <a href="#" class="guide-link"><span style="font-size:1.3rem">📋</span><span>Trámites de dependencia en 10 pasos</span></a>
-        <a href="#" class="guide-link"><span style="font-size:1.3rem">💶</span><span>Cuánto cobro como cuidador familiar</span></a>
-        <a href="#" class="guide-link"><span style="font-size:1.3rem">🏠</span><span>Guía de adaptación del hogar</span></a>
-      </div>
+  </article>
+  <article class="article-card">
+    <div class="article-card-img img-p4"></div>
+    <div class="article-card-body">
+      <span class="tag tag-orange">Salud en casa</span>
+      <h3 class="article-card-title">Cómo prevenir las úlceras por presión en personas encamadas: guía para cuidadores</h3>
+      <div class="article-card-meta">3 de junio de 2026 · 8 min de lectura</div>
     </div>
-  </aside>
+  </article>
+  <article class="article-card">
+    <div class="article-card-img img-p5"></div>
+    <div class="article-card-body">
+      <span class="tag">Bienestar</span>
+      <h3 class="article-card-title">Estimulación cognitiva en el Alzheimer: actividades prácticas que puedes hacer en casa</h3>
+      <div class="article-card-meta">2 de junio de 2026 · 6 min de lectura</div>
+    </div>
+  </article>
 </div>
 
 <section class="tools-strip">
